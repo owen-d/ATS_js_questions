@@ -1,3 +1,6 @@
+//DISCLAIMER: Please ignore the occasional tab-spacing. It was like that upon copy/paste
+//from the word document. Generally, I use 2 spaces as indentation.
+
 /* 
 Problem #1
 jsTest will return 0. 
@@ -75,7 +78,8 @@ var indexFinder = function(sortedArray, value) {
     I'm a little confused by the prompt here. I wish I had some more
     constraints/information to work with, but I'll try my best to create a general set. 
 */
-//It's important to note that the storage array is still public.
+//It's important to note that the storage array is still public
+//when we pseudoclassically instantiate a new set.
 var set = function(){
     this.storage = [];
 };
@@ -96,9 +100,47 @@ set.prototype.intersect = function(){
 };
 
 
+/*
+Given the function below, complete the implementation to display the data in a table on an HTML page. What are the performance implications for your solution in the browser DOM?
 
 
+*/
 
+function jsonTable() { 
+    var data = { 
+        headers: ["First Name", "Last Name", "Age"], 
+        rows: [ 
+            ["John", "Doe", 30],  ["Jane", "Doe", 27],  ["Mac", "Smith", 52] 
+        ] 
+    };
+    //add code here to build a table in the container
+    var table = document.createElement("table");
+    table.id = "tableContainer";
+
+    //iterate through and create table headers
+    data.headers.forEach(function(item){
+        var col = document.createElement("th");
+        var text = document.createTextNode(item);
+        col.appendChild(text);
+        table.appendChild(col);
+    });
+
+    //iterate through and create table rows and then iterate through the elements
+    //for each row and add them.
+    data.rows.forEach(function(item){
+        var row = document.createElement("tr");
+        item.forEach(function(val){
+            var entry = document.createElement("td");
+            var text = document.createTextNode(val);
+            entry.appendChild(text);
+            row.appendChild(entry);
+        });
+        table.appendChild(row);
+    });
+
+    var container = document.getElementById("tableContainer");
+    document.body.appendChild(table);
+}
 
 
 
