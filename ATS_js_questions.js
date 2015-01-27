@@ -1,4 +1,5 @@
-/* Problem #1
+/* 
+Problem #1
 jsTest will return 0. 
  - The index variable is instantiated with a value of zero.
  - obj.index is set equal to index, which is pointing to a primitive (number)
@@ -68,5 +69,42 @@ var indexFinder = function(sortedArray, value) {
 
 };
 
-module.exports.indexFinder = indexFinder;
+
+/*
+    Implement a Set data structure, including an “add” and “intersect” method.
+    I'm a little confused by the prompt here. I wish I had some more
+    constraints/information to work with, but I'll try my best to create a general set. 
+*/
+//It's important to note that the storage array is still public.
+var set = function(){
+    this.storage = [];
+};
+//pushes to the set's storage array.
+set.prototype.add = function(subset){
+    this.storage.push(subset);
+};
+//removes the individual subsets in the storage array, and then pushes a new subset
+//comprised of the two subsets to the storage array.
+set.prototype.intersect = function(){
+    var temp = [];
+    var array = this.storage;
+    for (var i = 0; i < arguments.length; i++) {
+        temp.push(arguments[i]);
+        array.splice(array.indexOf(arguments[i]), 1);
+    }
+    temp.length ? array.push(temp) : void 0;
+};
+
+
+
+
+
+
+
+
+
+module.exports = {
+    indexFinder: indexFinder,
+    set: set
+};
 
